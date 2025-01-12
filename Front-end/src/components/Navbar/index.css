@@ -1,0 +1,11 @@
+.btn-styling{
+    background-color: white;
+    padding: 10px;
+    border:1px solid grey !important;
+}
+
+.heading-section{
+    color: #545454 !important;
+    font-weight: 700 !important;
+
+}
