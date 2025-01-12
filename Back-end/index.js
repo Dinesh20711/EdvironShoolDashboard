@@ -191,52 +191,6 @@ app.post('/transaction-status-check', async (req, res) => {
 
 
 
-app.post('/webhook/transaction-status', async (req, res) => {
-  try {
-    // Parse the incoming payload
-    const { status, order_info } = req.body;
-
-    if (!status || !order_info) {
-      return res.status(400).json({ message: 'Invalid payload format' });
-    }
-
-    const { order_id, order_amount, transaction_amount, gateway, bank_refrence } = order_info;
-
-    console.log({ order_id, order_amount, transaction_amount, gateway, bank_refrence })
-
-    // Validate required fields in order_info
-    if (!order_id || !transaction_amount || !gateway || !bank_refrence) {
-      return res.status(400).json({ message: 'Missing required fields in order_info' });
-    }
-
-    // Extract collect_id from the order_id
-    const collect_id = order_id;
-
-    // Update the transaction in the database
-    const updatedTransaction = await Transaction.findOneAndUpdate(
-      { collect_id }, // Find transaction by collect_id
-      {
-        status,
-        transaction_amount,
-        gateway,
-        bank_refrence,
-      },
-      { new: true } // Return the updated document
-    ).select('-updatedAt');
-
-    if (!updatedTransaction) {
-      return res.status(404).json({ message: 'Transaction not found' });
-    }
-
-    console.log('Updated Transaction:', updatedTransaction);
-
-    // Respond with success
-    res.status(200).json({ message: 'Transaction status updated successfully', updatedTransaction });
-  } catch (error) {
-    console.error('Error processing webhook:', error);
-    res.status(500).json({ message: 'Internal Server Error', error });
-  }
-});
 
 
 
