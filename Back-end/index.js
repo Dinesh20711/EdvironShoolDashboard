@@ -15,7 +15,7 @@ app.use(cors());
 
 // Alternatively, enable CORS for a specific domain (replace with your frontend URL)
 app.use(cors({
-  origin: 'http://localhost:3001', // replace with the frontend URL or "*" for all origins
+  origin: 'https://edviron-school-dashboard.vercel.app/', // replace with the frontend URL or "*" for all origins
 }));// Middleware to parse incoming JSON data
 
 // Define the student schema
