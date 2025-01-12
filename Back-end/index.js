@@ -48,20 +48,20 @@ const transactionSchema = new mongoose.Schema({
 const Student = mongoose.model('Student', studentSchema, 'student');  // 'student' is the collection name
 const Transaction = mongoose.model('Transactions', transactionSchema,"transactions");
 
-
+const uri = process.env.MONGO_URI;
 
 // MongoDB connection setup
 const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true, //
-      useUnifiedTopology: true //
-    });
-    console.log('MongoDB connected successfully!');
-  } catch (error) {
-    console.error('MongoDB connection failed:', error);
-    process.exit(1);
-  }
+    
+
+    mongoose
+      .connect(uri)
+      .then(() => {
+        console.log('MongoDB connected successfully');
+      })
+      .catch((error) => {
+        console.error('MongoDB connection failed:', error);
+      });
 };
 
 // Call connectDB to connect to the database
