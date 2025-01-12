@@ -21,7 +21,7 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/transactions");
+        const response = await axios.get("https://edviron-shool-dashboard-server.vercel.app/transactions");
         setTransactions(response.data);
         setOriginalTransactions(response.data);
       } catch (error) {

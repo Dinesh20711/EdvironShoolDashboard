@@ -16,7 +16,7 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
   const handleCheckStatus = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/transaction-status-check",
+        "https://edviron-shool-dashboard-server.vercel.app/transaction-status-check",
         { custom_order_id: customOrderId }
       );
       
@@ -32,7 +32,7 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
   const handleUpdateStatus = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/update-transaction-status",
+        "https://edviron-shool-dashboard-server.vercel.app/update-transaction-status",
         { custom_order_id: customOrderId, status: statusToUpdate.toUpperCase() }
       );
       setError(null);

@@ -15,7 +15,7 @@ const SchoolTransactionsComponent = () => {
     const fetchSchools = async () => {
       setLoadingSchools(true);
       try {
-        const response = await fetch('http://localhost:3000/transactions'); // Replace with your API
+        const response = await fetch('https://edviron-shool-dashboard-server.vercel.app/transactions'); // Replace with your API
         const data = await response.json();
         setTransactions(data);
         // Map schools to react-select format
@@ -40,7 +40,7 @@ const SchoolTransactionsComponent = () => {
       const fetchTransactions = async () => {
         setLoading(true);
         try {
-          const response = await fetch(`http://localhost:3000/transaction/${selectedSchool.value}`);
+          const response = await fetch(`https://edviron-shool-dashboard-server.vercel.app/transaction/${selectedSchool.value}`);
           const data = await response.json();
           setTransactions(data);
           setLoading(false);
