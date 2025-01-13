@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdate function as a prop
+const AddStatusComponent = ({ onStatusUpdate }) => {
   const [open, setOpen] = useState(false);
   const [customOrderId, setCustomOrderId] = useState("");
   const [transactionStatus, setTransactionStatus] = useState(null);
@@ -19,10 +19,9 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
         "https://edviron-shool-dashboard-server.vercel.app/transaction-status-check",
         { custom_order_id: customOrderId }
       );
-      
-      console.log(response.data[0].status)
+
+      console.log(response.data[0].status);
       setTransactionStatus(response.data[0].status);
-      
     } catch (err) {
       setTransactionStatus(null);
       setError("Error fetching transaction status. Please try again.");
@@ -36,9 +35,8 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
         { custom_order_id: customOrderId, status: statusToUpdate.toUpperCase() }
       );
       setError(null);
-      setTransactionStatus(statusToUpdate); // Update the local state with the new status
+      setTransactionStatus(statusToUpdate);
 
-      // Call the onStatusUpdate function passed from the parent component to update the transaction status in the parent
       onStatusUpdate(customOrderId, statusToUpdate.toUpperCase());
     } catch (err) {
       setError("Error updating transaction status. Please try again.");
@@ -46,11 +44,8 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
   };
 
   return (
-    <div >
-      <button
-        className="btn btn-secondary"
-        onClick={handleOpen}
-      >
+    <div>
+      <button className="btn btn-secondary" onClick={handleOpen}>
         Check and Update Transaction Status
       </button>
 
@@ -63,7 +58,11 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
           aria-hidden="true"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         >
-          <div className="modal-dialog modal-dialog-centered" role="document">
+          <div
+            className="modal-dialog modal-dialog-centered"
+            role="document"
+            style={{ maxWidth: "95%", margin: "auto" }} // Ensures responsiveness
+          >
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
@@ -77,7 +76,6 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
                 ></button>
               </div>
               <div className="modal-body">
-                {/* Check Status Section */}
                 <div className="mb-3">
                   <label htmlFor="customOrderId" className="form-label">
                     Enter Custom Order ID
@@ -109,7 +107,6 @@ const AddStatusComponent = ({ onStatusUpdate }) => { // Accept the onStatusUpdat
                   </div>
                 )}
 
-                {/* Update Status Section */}
                 <div className="mt-4">
                   <label htmlFor="statusSelect" className="form-label">
                     Update Status
