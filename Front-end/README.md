@@ -1,70 +1,170 @@
-# Getting Started with Create React App
+Dashboard Page - Project Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Overview
 
-## Available Scripts
+The DashboardPage component provides a dynamic and responsive interface for displaying and managing transaction history. It includes filtering options based on status and date, paginated transaction listings, and status updates. This page is styled using Bootstrap and custom CSS.
 
-In the project directory, you can run:
+Features
 
-### `npm start`
+Transaction History Table: Displays transaction details in a tabular format.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Filters:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Filter transactions by status (Success, Pending, Failure).
 
-### `npm test`
+Filter transactions by start and end date.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Pagination: Enables navigation through multiple pages of transaction records.
 
-### `npm run build`
+Status Update: Allows updating the transaction status via the AddStatusComponent.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clickable Rows: Navigates to the school-specific transaction page on row click.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Responsive Design: Built with Bootstrap for responsiveness.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Technologies Used
 
-### `npm run eject`
+React.js
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Bootstrap for UI styling
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Axios for API calls
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+React Router for navigation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Custom CSS
 
-## Learn More
+Setup and Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Clone the repository:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+git clone <repository_url>
 
-### Code Splitting
+Navigate to the project directory:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+cd Frontend
 
-### Analyzing the Bundle Size
+Install the dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+npm install
 
-### Making a Progressive Web App
+Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm start
 
-### Advanced Configuration
+Access the application in your browser at https://edviron-shool-dashboard-server.vercel.app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+API Endpoint
 
-### Deployment
+The transaction data is fetched from:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+https://edviron-shool-dashboard-server.vercel.app/transactions
 
-### `npm run build` fails to minify
+Component Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+DashboardPage
+
+State Variables:
+
+filterStartDate: Tracks the start date for filtering transactions.
+
+filterEndDate: Tracks the end date for filtering transactions.
+
+allTransactions: Holds all transaction records fetched from the API.
+
+filteredTransactions: Stores the filtered transaction records.
+
+statusFilter: Tracks the selected status filter.
+
+currentPage: Tracks the current page for pagination.
+
+rowsPerPage: Number of rows displayed per page.
+
+Key Functions:
+
+fetchTransactionData: Fetches transaction data from the API.
+
+handleStatusFilterChange: Updates the status filter and applies filtering logic.
+
+handlePageChange: Updates the current page for pagination.
+
+handleTransactionRowClick: Navigates to the school-specific transactions page.
+
+handleTransactionStatusUpdate: Updates the status of a specific transaction.
+
+getStatusBadgeClass: Returns the appropriate badge class for a transaction status.
+
+How It Works
+
+Fetching Data:
+
+On initial render, the useEffect hook fetches transaction data from the API and populates allTransactions and filteredTransactions.
+
+Filtering Transactions:
+
+Filters transactions by status, start date, and end date using the handleStatusFilterChange function.
+
+Pagination:
+
+Splits transactions into pages based on the rowsPerPage value.
+
+Updating Status:
+
+The AddStatusComponent is used to update the transaction status dynamically.
+
+Navigation:
+
+Clicking on a table row navigates to the respective school transactions page.
+
+Folder Structure
+
+src/
+├── components/
+│   └── AddStatusComponent.js
+├── pages/
+│   └── DashboardPage.js
+├── index.css
+├── App.js
+├── index.js
+
+Table Columns
+
+SI No: Serial number of the transaction.
+
+Institute Name: Name of the institute.
+
+Date & Time: Timestamp of the transaction.
+
+Collect ID: Unique identifier for the collection.
+
+School ID: Identifier for the school.
+
+Gateway: Payment gateway used.
+
+Order Amount: Original order amount.
+
+Transaction Amount: Final transaction amount.
+
+Status: Status of the transaction (Success, Pending, Failure).
+
+Custom Order ID: Unique order identifier.
+
+How to Extend
+
+Add More Filters: Extend the handleStatusFilterChange function to include additional filtering criteria.
+
+Enhance UI: Use additional Bootstrap classes or custom CSS for better styling.
+
+API Integration: Update the API endpoint to fetch data from a different server or add more endpoints for additional features.
+
+
+Acknowledgments
+
+Bootstrap for UI components.
+
+React Router for seamless navigation.
+
+Axios for simplifying HTTP requests.
+
+
+
