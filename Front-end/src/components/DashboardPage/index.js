@@ -206,8 +206,8 @@ const DashboardPage = () => {
         </div>
 
         {/* Pagination */}
-        <div className="d-flex justify-content-between align-items-center mt-3">
-          <span className="fw-bold">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3">
+          <span className="fw-bold mb-2 mb-md-0">
             Showing {currentPage * rowsPerPage + 1} to{" "}
             {Math.min(
               (currentPage + 1) * rowsPerPage,
@@ -215,7 +215,7 @@ const DashboardPage = () => {
             )}{" "}
             of {filteredTransactions.length} entries
           </span>
-          <div className="d-flex gap-2">
+          <div className="d-flex flex-wrap gap-2">
             <button
               className="btn btn-outline-secondary"
               disabled={currentPage === 0}
