@@ -116,17 +116,6 @@ Navigation:
 
 Clicking on a table row navigates to the respective school transactions page.
 
-Folder Structure
-
-src/
-├── components/
-│   └── AddStatusComponent.js
-├── pages/
-│   └── DashboardPage.js
-├── index.css
-├── App.js
-├── index.js
-
 Table Columns
 
 SI No: Serial number of the transaction.
